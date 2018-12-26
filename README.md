@@ -1,7 +1,7 @@
 # DBM-Mods | Pack de Mods de Slowftw#0001/0905
 
 **Este não é o Link original.**
-**Link GitHub original: https://goo.gl/MoLkmM**
+**Link GitHub original: https://github.com/Discord-Bot-Maker-Mods/DBM-Mods**
 
 Aqui estão alguns Mods para Discord Bot Maker! Sinta-se à vontade para usá-los em seus bots. 
 
