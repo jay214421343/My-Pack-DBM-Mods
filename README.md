@@ -16,7 +16,7 @@ https://dbotmaker.io/forums/threads/dbm-language-servers.460
 
 # Como instalar mods:
 
-1. Baixe este arquivo: https://github.com/Slowftw/DBM-Mods/archive/master.zip
+1. Baixe este arquivo: https://github.com/Slowftw/My-DBM-Mods/archive/master.zip
 2. Abra o ZIP e abra a pasta `Actions`
 3. Abrir o DBM
 4. Clique em `Project`
