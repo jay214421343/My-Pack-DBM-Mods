@@ -27,7 +27,7 @@ module.exports = {
 	author: "Two",
 
 	// The version of the mod (Defaults to 1.0.0)
-	version: "1.9.2",
+	version: "1.9.4", //Added in 1.9.4
 
 	// A short description to show on the mod line for this mod (Must be on a single line)
 	short_description: "This mod allows you to grab the members from a dataname then sort/dont sort it and/or use a result limit.",
@@ -68,7 +68,7 @@ module.exports = {
 	// are also the names of the fields stored in the action's JSON data.
 	//---------------------------------------------------------------------
 
-	fields: ["sort", "start", "middle", "end", "getresults", "dataName", "varName2", "storage"],
+	fields: ["debu", "numbefst2", "numbefst", "numbefstselect", "sort", "start", "middle", "end", "getresults", "dataName", "varName2", "storage"],
 
 	//---------------------------------------------------------------------
 	// Command HTML
@@ -95,9 +95,24 @@ module.exports = {
 	<div style="float: left; width: 50%;">
 		Data Name:<br>
 		<input id="dataName" class="round" type="text">
-	</div><br><br><br>
+	</div>
 	<span>
+	
 </div>
+      Number before start
+<select id="numbefstselect" class="round" style="width:33%" onchange="glob.onChange1(this)">
+<option value="1" >No</option>
+<option value="2"selected>Yes</option>
+</select> 
+<br>
+
+
+<div id="numbefst" style=" width: 80%; display: none;">
+Char after Number:<br>
+<input id="numbefst2" class="round" type="text" value=")">
+</div>
+<br>
+
 	Start:
     
 	<select id="start" class="round" style="width:33%">
@@ -149,6 +164,12 @@ module.exports = {
 	<input id="varName2" class="round" type="text"><br>
 </div>
 </div>
+<select id="debu" class="round" style="width: 90%;">
+<option value="0" selected>Debug</option>
+<option value="1" selected>Don't Debug</option>
+
+</select><br>
+</div>
 </html>`
 	},
 
@@ -165,8 +186,21 @@ module.exports = {
 			glob,
 			document
 		} = this;
-
-
+		glob.onChange1 = function(event) {
+			const value = parseInt(event.value);
+			const dom = document.getElementById('numbefst');
+			
+			
+			if(value == 1) {
+				dom.style.display = 'none';
+				
+			} else if(value == 2) {
+				
+				dom.style.display = null;
+			}
+			
+		}
+		glob.onChange1(document.getElementById('numbefstselect'));
 	},
 
 	//---------------------------------------------------------------------
@@ -187,15 +221,20 @@ module.exports = {
 		const varName2 = this.evalMessage(data.varName2, cache);
 		const st = this.evalMessage(data.start, cache)
 		const mid = this.evalMessage(data.middle, cache)
+		const selectionsnum = parseInt(data.numbefstselect);
+
 		const en = this.evalMessage(data.end, cache)
 		const sort = parseInt(data.sort);
+		const debug = parseInt(data.debu);
+		const WrexMODS = this.getWrexMods(); // as always.
+		
 
-
-		var Discord = require('discord.js');
+		var Discord = WrexMODS.require('discord.js');
+		var fastsort = WrexMODS.require('fast-sort');
 		var client = new Discord.Client();
 		const {
 			JSONPath
-		} = require('jsonpath-plus');
+		} = WrexMODS.require('jsonpath-plus');
 		fs = require('fs')
 		var file = fs.readFileSync("./data/players.json", 'utf8');
 
@@ -203,20 +242,22 @@ module.exports = {
 
 
 		if (file) {
-			const dataName = this.evalMessage(data.dataName, cache);
+			var dataName = this.evalMessage(data.dataName, cache);
+			dataName = '[' + "'" + dataName + "'" + ']'
 
 			const isAdd = Boolean(data.changeType === "1");
 			let val = this.evalMessage(data.value, cache);
 			var list2 = []
 			var list = []
 			var list4 = []
+			var list5 = []
 
 			if (val !== undefined) {
 				var file = JSON.parse(file)
 				try {
 					var list = []
 					var result = JSONPath({
-						path: '$.[?(@.' + dataName + ' || @.' + dataName + ' > -9999999999999999999999999999999999999999999999999999999)]*~',
+						path: '$.[?(@' + dataName + ' || @' + dataName + ' > -9999999999999999999999999999999999999999999999999999999)]*~',
 						json: file
 					});
 					var pull = result;
@@ -227,14 +268,16 @@ module.exports = {
 					for (var i = 0; i < result.length; i++) {
 
 						var result2 = JSONPath({
-							path: '$.' + result[i] + '.' + dataName,
+							path: '$.' + result[i] + dataName,
 							json: file
 						});
 
 						try {
+							
 							var user = msg.guild.members.get(result[i]);
 
 							tag = user.user.tag
+
 							var name2 = "'" + "name" + "'";
 							var id = "'" + "id" + "'";
 							var tag2 = "" + tag + "";
@@ -248,24 +291,29 @@ module.exports = {
 
 
 						} catch (err) {
-							console.log(err)
+							switch (debug) {
+								case 0:
+								console.log(err)
+								break;
+								case 1:
+								break;
+							} 
+							
 						}
 					}
 					switch (sort) {
 						case 1:
-							result = list.sort(function (a, b) {
-								return parseInt(b.name2) > parseInt(a.name2)
-							})
+							result = fastsort(list).desc(u => parseInt(u.name2));
 							break;
 						case 2:
-							result = list.sort(function (a, b) {
-								return parseInt(a.name2) > parseInt(b.name2)
-							})
+
+							result = fastsort(list).asc(u => parseInt(u.name2));
 							break;
 						case 0:
 							result = list
 							break;
 					}
+                 
 					var result2 = JSON.stringify(result)
 
 					var getres = parseInt(this.evalMessage(data.getresults, cache));
@@ -296,17 +344,35 @@ module.exports = {
 							var result = res
 
 							eval(' ' + st + ' ');
-							var middle = " " + mid + " **"
+							var middle = " " + mid + " "
 							eval(' ' + en + ' ');
 							var username = res2
 							var result = res
 							var en2 = eval(en);
 							var st2 = eval(st);
+							list5.push("easter egg :eyes:")
+							switch (selectionsnum) {
+								case 1:
 
 
-							list2.push(list2.length+1 +")" + " " + st2 + middle + en2 + "**" + '\n')
+									list2.push(st2 + middle + en2 + '\n')
+									break;
+								case 2:
+
+									var num = list5.length;
+									var numbef = this.evalMessage(data.numbefst2, cache)
+									list2.push(num + numbef + " " + st2 + middle + en2 + '\n')
+									break;
+							}
+
 						} catch (err) {
-							console.log(err)
+							switch (debug) {
+								case 0:
+								console.log(err)
+								break;
+								case 1:
+								break;
+							} 
 						}
 
 
@@ -319,7 +385,13 @@ module.exports = {
 					_this.storeValue(list4, storage, varName2, cache)
 					_this.callNextAction(cache);
 				} catch (err) {
-					console.log(err)
+					switch (debug) {
+						case 0:
+						console.log(err)
+						break;
+						case 1:
+						break;
+					} 
 				}
 
 			}
