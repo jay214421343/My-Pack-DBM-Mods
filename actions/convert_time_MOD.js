@@ -6,7 +6,7 @@ module.exports = {
 // This is the name of the action displayed in the editor.
 //---------------------------------------------------------------------
 
-name: "Find Item in List",
+name: "Convert Time",
 
 //---------------------------------------------------------------------
 // Action Section
@@ -14,7 +14,19 @@ name: "Find Item in List",
 // This is the section the action will fall into.
 //---------------------------------------------------------------------
 
-section: "Lists and Loops",
+section: "Other Stuff",
+
+//---------------------------------------------------------------------
+// Action Subtitle
+//
+// This function generates the subtitle displayed next to the name.
+//---------------------------------------------------------------------
+
+subtitle: function(data) {
+	const convertFroms = ['Miliseconds', 'Seconds', 'Minutes', 'Hours'];
+	const convertTos = ['Miliseconds', 'Seconds', 'Minutes', 'Hours'];
+	return `Convert ${data.time} ${convertFroms[parseInt(data.convertFrom)]} to ${convertTos[parseInt(data.convertTo)]}`;
+},
 
 //---------------------------------------------------------------------
 // DBM Mods Manager Variables (Optional but nice to have!)
@@ -27,26 +39,15 @@ section: "Lists and Loops",
 author: "ZockerNico",
 
 // The version of the mod (Defaults to 1.0.0)
-version: "1.1.0",
+version: "1.0.0", //Added in 1.9.2
 
 // A short description to show on the mod line for this mod (Must be on a single line)
-short_description: "This action searches for an item in a list and returns the position.",
+short_description: "This action converts one unit of time into another.",
 
 // If it depends on any other mods by name, ex: WrexMODS if the mod uses something from WrexMods
 
 
 //---------------------------------------------------------------------
-
-//---------------------------------------------------------------------
-// Action Subtitle
-//
-// This function generates the subtitle displayed next to the name.
-//---------------------------------------------------------------------
-
-subtitle: function(data) {
-	const list = ['Server Members', 'Server Channels', 'Server Roles', 'Server Emojis', 'All Bot Servers', 'Mentioned User Roles', 'Command Author Roles', 'Temp Variable', 'Server Variable', 'Global Variable'];
-	return `Find "${data.item}" in ${list[parseInt(data.list)]}`;
-},
 
 //---------------------------------------------------------------------
 // Action Storage Function
@@ -57,7 +58,8 @@ subtitle: function(data) {
 variableStorage: function(data, varType) {
 	const type = parseInt(data.storage);
 	if(type !== varType) return;
-	return ([data.varName, 'Number']);
+	let dataType = 'Number';
+	return ([data.varName, dataType]);
 },
 
 //---------------------------------------------------------------------
@@ -68,7 +70,7 @@ variableStorage: function(data, varType) {
 // are also the names of the fields stored in the action's JSON data.
 //---------------------------------------------------------------------
 
-fields: ["list", "varName", "item", "storage", "varName2"],
+fields: ["time", "convertFrom", "convertTo", "storage", "varName"],
 
 //---------------------------------------------------------------------
 // Command HTML
@@ -88,36 +90,46 @@ fields: ["list", "varName", "item", "storage", "varName2"],
 
 html: function(isEvent, data) {
 	return `
-	<div><p>Made by ZockerNico.</p></div><br>
-<div><b></b>
-	<div style="float: left; width: 35%;">
-		Source List:<br>
-		<select id="list" class="round" onchange="glob.listChange(this, 'varNameContainer')">
-			${data.lists[isEvent ? 1 : 0]}
+<div>
+	<div>
+		<p>Made by ZockerNico</p>
+	</div><br>
+	<div style="float: left; width: 45%;">
+		Convert from:<br>
+		<select id="convertFrom" class="round">
+			<option value="0">Miliseconds</option>
+			<option value="1" selected>Seconds</option>
+			<option value="2">Minutes</option>
+			<option value="3">Hours</option>
 		</select>
 	</div>
-	<div id="varNameContainer" style="display: none; float: right; width: 60%;">
-		Variable Name:<br>
-		<input id="varName" class="round" type="text" list="variableList"><br>
+	<div style="float: right; width: 50%;">
+		Amount:<br>
+		<input id="time" class="round" type="text">
 	</div>
-</div><br><br><br>
-<div style="padding-top: 8px;">
-	Item to find:<br>
-	<textarea id="item" rows="4" placeholder="Insert a variable or some text. Those '' are not needed!" style="width: 94%; font-family: monospace; white-space: nowrap; resize: none;"></textarea>
-</div><br>
-<div style="padding-top: 8px;">
-	<div style="float: left; width: 35%;">
+	<div style="float: left; padding-top: 8px; width: 70%;">
+		Convert to:<br>
+		<select id="convertTo" class="round">
+			<option value="0">Miliseconds</option>
+			<option value="1">Seconds</option>
+			<option value="2" selected>Minutes</option>
+			<option value="3">Hours</option>
+		</select>
+	</div>
+	<div style="float: left; padding-top: 8px; width: 35%;">
 		Store In:<br>
 		<select id="storage" class="round">
 			${data.variables[1]}
 		</select>
 	</div>
-	<div id="varNameContainer2" style="float: right; width: 60%;">
+	<div id="varNameContainer" style="float: right; padding-top: 8px; width: 60%;">
 		Variable Name:<br>
-		<input id="varName2" class="round" type="text">
+		<input id="varName" class="round" type="text"><br>
+	</div><br>
+	<div style="float: left; padding-top: 8px;">
+		<p>Sample:<br>1 minute as input will give you 0.016666666666666666 hours as output.</p>
 	</div>
-</div><br><br><br>
-<div><p>This action searches for an item in a list and returns the position.<br>Note that every list in JavaScript starts from 0!</p></div><br>`
+</div>`
 },
 
 //---------------------------------------------------------------------
@@ -129,19 +141,6 @@ html: function(isEvent, data) {
 //---------------------------------------------------------------------
 
 init: function() {
-	const {glob, document} = this;
-
-	glob.onChange1 = function(event) {
-		const value = parseInt(event.value);
-		const dom = document.getElementById('positionHolder');
-		if(value < 3) {
-			dom.style.display = 'none';
-		} else {
-			dom.style.display = null;
-		}
-	};
-
-	glob.listChange(document.getElementById('list'), 'varNameContainer');
 },
 
 //---------------------------------------------------------------------
@@ -153,32 +152,87 @@ init: function() {
 //---------------------------------------------------------------------
 
 action: function(cache) {
-    const data = cache.actions[cache.index];
-    const storage = parseInt(data.list);
-    const varName = this.evalMessage(data.varName, cache);
-	const list = this.getList(storage, varName, cache);
-	const item = this.evalMessage(data.item, cache);
+	const data = cache.actions[cache.index];
+	const amount = parseInt(this.evalMessage(data.time, cache));
+	const convFrom = parseFloat(data.convertFrom);
+	const convTo = parseFloat(data.convertTo);
+	const storage = parseInt(data.storage);
+	const varName = this.evalMessage(data.varName, cache);
 
-	let result;
-	var loop = 0;
-
-    while(loop <= list.length) {
-		if(list[loop] == item) {
-			result = loop;
-			break;
-		} else {
-			++loop;
-		}
+	var result = undefined;
+	function Converter(from, to, amount) {
+		switch(from) {
+			case 0://From miliseconds
+				switch(to) {
+					case 0:
+						result = parseFloat(amount);//Same
+						break;
+					case 1:
+						result = parseFloat(amount/1000);//To seconds
+						break;
+					case 2:
+						result = parseFloat(amount/60000);//To minutes
+						break;
+					case 3:
+						result = parseFloat(amount/3600000);//To hours
+						break;
+				};
+				break;
+			case 1://From seconds
+				switch(to) {
+					case 0:
+						result = parseFloat(amount*1000);//To miliseconds
+						break;
+					case 1:
+						result = parseFloat(amount);//Same
+						break;
+					case 2:
+						result = parseFloat(amount/60);//To minutes
+						break;
+					case 3:
+						result = parseFloat(amount/3600);//To hours
+						break;
+				};
+				break;
+			case 2://From minutes
+				switch(to) {
+					case 0:
+						result = parseFloat(amount*60000);//To miliseconds
+						break;
+					case 1:
+						result = parseFloat(amount*60);//To seconds
+						break;
+					case 2:
+						result = parseFloat(amount);//Same
+						break;
+					case 3:
+						result = parseFloat(amount/60);//To hours
+						break;
+				};
+				break;
+			case 3://From hours
+				switch(to) {
+					case 0:
+						result = parseFloat(amount*6000000);//To miliseconds
+						break;
+					case 1:
+						result = parseFloat(amount*3600);//To seconds
+						break;
+					case 2:
+						result = parseFloat(amount*60);//To minutes
+						break;
+					case 3:
+						result = parseFloat(amount);//Same
+						break;
+				};
+				break;
+		};
 	};
+	Converter(convFrom, convTo, amount);
 
-    if (result) {
-      const varName2 = this.evalMessage(data.varName2, cache);
-      const storage2 = parseInt(data.storage);
-      this.storeValue(result, storage2, varName2, cache);
-    }
-
-    this.callNextAction(cache);
-  },
+	this.storeValue(result, storage, varName, cache);
+	this.callNextAction(cache);
+},
 
 //---------------------------------------------------------------------
 // Action Bot Mod
