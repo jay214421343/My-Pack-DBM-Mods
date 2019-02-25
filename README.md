@@ -21,7 +21,7 @@ https://dbotmaker.io/forums/threads/dbm-language-servers.460
 3. Abrir o DBM
 4. Clique em `Project`
 5. Clique em `Open Actions Directory`
-6. Ir uma pasta de volta, você deve estar em `/steamapps/common/Discord Bot Maker`
+6. Volte uma pasta, e então você deve estar em `/steamapps/common/Discord Bot Maker`
 7. Agora copie todos os arquivos que você baixou do arquivo zip
 8. Cole-os na sua pasta que você abriu
 9. Por favor, sobrescreva os existentes
@@ -29,4 +29,4 @@ https://dbotmaker.io/forums/threads/dbm-language-servers.460
 
 _Se você não executar seu bot com o DBM, certifique-se de copiar essas ações para o diretório bot também! O mesmo para bots hospedados! E se você tiver mais alguma dúvida: Junte-se ao Discord!_
 
-**As ações ausentes aparecerão como "XYZ não é uma ação" no seu console.**
+**As ações ausentes aparecerão como "XYZ is not an Action" no seu console.**
