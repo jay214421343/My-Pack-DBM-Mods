@@ -33,7 +33,7 @@ _Se você não executar seu bot com o DBM, certifique-se de copiar a sua pasta `
 - 🏠 [Servidor oficial](https://discord.gg/DMDvzSe)
 - 🔧 [DBM Hub](https://discord.gg/4jptqgw)
 - ⚒️ [DBM Network](https://discord.gg/3QxkZPK) (antigo DBM Mods)
-- 🔩 [DBM Bots](https://discord.gg/Me3EFyX)
+- 🤖 [DBM Bots](https://discord.gg/Me3EFyX)
 - 📁 [DBM Raw Data Archive](https://discord.gg/RyNZ8xB)
 ###### :pushpin: **Lista de servidores de outras linguagens:**
 - 🇹🇷 DBM Türkiye: https://discord.gg/dp3Tbzq
