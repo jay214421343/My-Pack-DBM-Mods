@@ -30,19 +30,19 @@ _Se você não executar seu bot com o DBM, certifique-se de copiar a sua pasta `
 
 # Precisa de ajuda melhor? Precisa de mods? Precisa de Raws Datas? Existem vários servidores para o Discord Bot Maker. Um principal e outros do DBM Network (não oficial). Existem até servidores de idiomas!
 
-- **Links:**
-:flag_us: [Servidor oficial](https://discord.gg/DMDvzSe)
-:flag_us: [DBM Hub](https://discord.gg/4jptqgw)
-:flag_us: [DBM Network](https://discord.gg/3QxkZPK) (antigo DBM Mods)
-:flag_us: [DBM Bots](https://discord.gg/Me3EFyX)
-:flag_us: [DBM Raw Data Archive](https://discord.gg/RyNZ8xB)
-- **Lista de servidores de outras linguagens:**
-:flag_tr: DBM Türkiye: https://discord.gg/dp3Tbzq
-:flag_il: DBM Israel: https://discord.gg/VHwJHJj
-:flag_pl: DBM Polska: https://discord.gg/9PV2sm
-:flag_fr: DBM Francais: https://discord.gg/Und8NmY
-:flag_ge: DBM Germany: https://discord.gg/3RfuZUT
-:flag_br: DBM Brasil: https://discord.gg/cJRQ8c8
-:flag_ro: DBM Română: https://discord.gg/ycpNqgk
-:flag_se: DBM Svenska: https://discord.gg/e8FhtMK
-:flag_es: DBM Español: https://discord.gg/zgPMayY
+:pushpin: **Links:**
+- :flag_us: [Servidor oficial](https://discord.gg/DMDvzSe)
+- :flag_us: [DBM Hub](https://discord.gg/4jptqgw)
+- :flag_us: [DBM Network](https://discord.gg/3QxkZPK) (antigo DBM Mods)
+- :flag_us: [DBM Bots](https://discord.gg/Me3EFyX)
+- :flag_us: [DBM Raw Data Archive](https://discord.gg/RyNZ8xB)
+:pushpin: **Lista de servidores de outras linguagens:**
+- :flag_tr: DBM Türkiye: https://discord.gg/dp3Tbzq
+- :flag_il: DBM Israel: https://discord.gg/VHwJHJj
+- :flag_pl: DBM Polska: https://discord.gg/9PV2sm
+- :flag_fr: DBM Francais: https://discord.gg/Und8NmY
+- :flag_ge: DBM Germany: https://discord.gg/3RfuZUT
+- :flag_br: DBM Brasil: https://discord.gg/cJRQ8c8
+- :flag_ro: DBM Română: https://discord.gg/ycpNqgk
+- :flag_se: DBM Svenska: https://discord.gg/e8FhtMK
+- :flag_es: DBM Español: https://discord.gg/zgPMayY
