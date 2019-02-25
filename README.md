@@ -30,7 +30,7 @@ _Se você não executar seu bot com o DBM, certifique-se de copiar a sua pasta `
 > Precisa de ajuda melhor? Precisa de mods? Precisa de Raws Datas? Existem vários servidores para o Discord Bot Maker. Um principal e outros do DBM Network (não oficial). Existem até servidores de idiomas!
 
 ###### :pushpin: **Links:**
-- 🏠 [Servidor oficial](https://discord.gg/DMDvzSe)
+- 🏠 [Discord Bot Maker](https://discord.gg/DMDvzSe) (Servidor principal/oficial)
 - 🔧 [DBM Hub](https://discord.gg/4jptqgw)
 - ⚒️ [DBM Network](https://discord.gg/3QxkZPK) (antigo DBM Mods)
 - 🤖 [DBM Bots](https://discord.gg/Me3EFyX)
