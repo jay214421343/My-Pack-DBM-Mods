@@ -1,4 +1,4 @@
-# DBM-Mods | Pack de Mods de Slowftw#0001/0905
+> DBM-Mods | Pack de Mods de Slowftw#0001/0905
 
 **Este não é o Link original.**
 **Link GitHub original: https://goo.gl/MoLkmM**
@@ -14,7 +14,7 @@ _DBM - Outros servidores de outras linguagens:_
 https://dbotmaker.io/forums/threads/dbm-language-servers.460
 
 
-# Como instalar mods:
+> Como instalar mods:
 
 1. Baixe este arquivo: https://github.com/Slowftw/My-DBM-Mods/archive/Slowftw.zip
 2. Abra o ZIP e abra a pasta `Actions`
