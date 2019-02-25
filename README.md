@@ -8,6 +8,7 @@ Aqui estão alguns Mods para Discord Bot Maker! Sinta-se à vontade para usá-lo
 
 Pasta `Actions` com alguns Mods que não estão no original.
 
+#  
 ## :beginner: Tutorial para instalar estes Mods:
 
 1. Baixe este arquivo: https://github.com/Slowftw/My-Pack-DBM-Mods/archive/Slowftw.zip
@@ -25,7 +26,7 @@ _Se você não executar seu bot com o DBM, certifique-se de copiar a sua pasta `
 
 **As ações ausentes aparecerão como "XYZ is not an Action" no seu console.**
 
-
+#  
 # DBM Servidores
 > Precisa de ajuda melhor? Precisa de mods? Precisa de Raws Datas? Existem vários servidores para o Discord Bot Maker. Um principal e outros do DBM Network (não oficial). Existem até servidores de idiomas!
 
