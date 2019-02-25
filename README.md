@@ -2,12 +2,11 @@
 
 - :pushpin: **Este não é os Mods oficiais do DBM.** 
 - :pushpin: **Link GitHub oficial: https://goo.gl/MoLkmM**
-- :pushpin: **https://dbotmaker.io/**
+- :pushpin: **Site oficial: https://dbotmaker.io/**
 
-Aqui estão alguns Mods para Discord Bot Maker! Sinta-se à vontade para usá-los em seus bots. 
-
+Aqui estão alguns Mods para Discord Bot Maker! Sinta-se à vontade para usá-los em seus bots.
 Pasta `Actions` com alguns Mods que não estão no original.
-
+ 
 #  
 ## :beginner: Tutorial para instalar estes Mods:
 
@@ -46,3 +45,6 @@ _Se você não executar seu bot com o DBM, certifique-se de copiar a sua pasta `
 - :flag_ro: DBM Română: https://discord.gg/ycpNqgk
 - :flag_se: DBM Svenska: https://discord.gg/e8FhtMK
 - :flag_es: DBM Español: https://discord.gg/zgPMayY
+
+# Testando
+![alt text](https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/180/flag-for-brazil_1f1e7-1f1f7.png)
