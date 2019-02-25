@@ -27,6 +27,9 @@ https://dbotmaker.io/forums/threads/dbm-language-servers.460
 9. Por favor, sobrescreva os existentes
 10. Reinicie seu DBM
 
-_Se você não executar seu bot com o DBM, certifique-se de copiar essas ações para o diretório bot também! O mesmo para bots hospedados! E se você tiver mais alguma dúvida: Junte-se ao Discord!_
+_Se você não executar seu bot com o DBM, certifique-se de copiar a sua pasta `actions` para o diretório bot também! O mesmo para bots hospedados!_
 
 **As ações ausentes aparecerão como "XYZ is not an Action" no seu console.**
+
+E se você tiver mais alguma dúvida: Junte-se ao nosso não-oficial do DBM!
+Convite: https://discord.gg/5gCQRhR
