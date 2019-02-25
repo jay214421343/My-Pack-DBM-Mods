@@ -1,6 +1,6 @@
 # :open_file_folder: Meu Pack de Mods para o Discord Bot Maker!
 
-- :pushpin: **Este não são os DBM-Mods oficiais.** 
+- :pushpin: **Este não é os Mods oficiais do DBM.** 
 - :pushpin: **Link GitHub oficial: https://goo.gl/MoLkmM**
 
 Aqui estão alguns Mods para Discord Bot Maker! Sinta-se à vontade para usá-los em seus bots. 
@@ -8,7 +8,7 @@ Aqui estão alguns Mods para Discord Bot Maker! Sinta-se à vontade para usá-lo
 Pasta `Actions` com alguns Mods que não estão no original.
 
 
-Junte-se aos Servidores Discord do Discord Bot Maker para ficar atualizado e poder sugerir coisas! https://dbotmaker.io/
+- Junte-se aos Servidores Discord do Discord Bot Maker para ficar atualizado e poder sugerir coisas! https://dbotmaker.io/
 
 > DBM - Outros servidores de outras linguagens: https://dbotmaker.io/forums/threads/dbm-language-servers.460
 
@@ -26,14 +26,14 @@ Junte-se aos Servidores Discord do Discord Bot Maker para ficar atualizado e pod
 9. Por favor, sobrescreva os existentes
 10. Reinicie seu DBM
 
-_**Se você não executar seu bot com o DBM, certifique-se de copiar a sua pasta `actions` para o diretório bot também! O mesmo para bots hospedados!**_
+_Se você não executar seu bot com o DBM, certifique-se de copiar a sua pasta `actions` para o diretório bot também! O mesmo para bots hospedados!_
 
-> As ações ausentes aparecerão como "XYZ is not an Action" no seu console.**
+**As ações ausentes aparecerão como "XYZ is not an Action" no seu console.**
 
 
-### Precisa de ajuda melhor? Precisa de mods? Precisa de Raws Datas? 
-### Existem vários servidores para o Discord Bot Maker. 
-### Um principal e outros do DBM Network (não oficial). Existem até servidores de idiomas!
+###### Precisa de ajuda melhor? Precisa de mods? Precisa de Raws Datas? 
+###### Existem vários servidores para o Discord Bot Maker. 
+###### Um principal e outros do DBM Network (não oficial). Existem até servidores de idiomas!
 
 
 > **Links**
