@@ -2,13 +2,11 @@
 
 - :pushpin: **Este não é os Mods oficiais do DBM.** 
 - :pushpin: **Link GitHub oficial: https://goo.gl/MoLkmM**
+- :pushpin: **https://dbotmaker.io/**
 
 Aqui estão alguns Mods para Discord Bot Maker! Sinta-se à vontade para usá-los em seus bots. 
 
 Pasta `Actions` com alguns Mods que não estão no original.
-
-
-- Junte-se aos Servidores Discord do Discord Bot Maker para ficar atualizado e poder sugerir coisas! https://dbotmaker.io/
 
 ## :beginner: Tutorial para instalar estes Mods:
 
@@ -28,7 +26,8 @@ _Se você não executar seu bot com o DBM, certifique-se de copiar a sua pasta `
 **As ações ausentes aparecerão como "XYZ is not an Action" no seu console.**
 
 
-# Precisa de ajuda melhor? Precisa de mods? Precisa de Raws Datas? Existem vários servidores para o Discord Bot Maker. Um principal e outros do DBM Network (não oficial). Existem até servidores de idiomas!
+# DBM Servidores
+> Precisa de ajuda melhor? Precisa de mods? Precisa de Raws Datas? Existem vários servidores para o Discord Bot Maker. Um principal e outros do DBM Network (não oficial). Existem até servidores de idiomas!
 
 ###### :pushpin: **Links:**
 - :flag_us: [Servidor oficial](https://discord.gg/DMDvzSe)
