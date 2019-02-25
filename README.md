@@ -48,3 +48,4 @@ _Se você não executar seu bot com o DBM, certifique-se de copiar a sua pasta `
 
 # Testando
 ![alt text](https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/180/flag-for-brazil_1f1e7-1f1f7.png)
+🇧🇷 DBM Brasil
