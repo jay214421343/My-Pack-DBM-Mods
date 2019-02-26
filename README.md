@@ -38,7 +38,7 @@ _Se você não executar seu bot com o DBM, certifique-se de copiar a sua pasta `
 ###### :pushpin: **Lista de servidores de outras linguagens (não oficial):**
 - 🇹🇷 DBM Türkiye: https://discord.gg/dp3Tbzq
 - 🇮🇱 DBM Israel: https://discord.gg/VHwJHJj
-- 🇵🇱 DBM Polska: https://discord.gg/9PV2sm
+- 🇵🇱 DBM Polska: https://discord.gg/9PV2sm (Convite inválido)
 - 🇫🇷 DBM Francais: https://discord.gg/Und8NmY
 - 🇩🇪 DBM Germany: https://discord.gg/3RfuZUT
 - 🇧🇷 DBM Brasil: https://discord.gg/cJRQ8c8
