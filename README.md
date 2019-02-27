@@ -5,7 +5,7 @@
 - :pushpin: **Site oficial: https://dbotmaker.io/**
 
 Aqui estão alguns Mods para Discord Bot Maker! Sinta-se à vontade para usá-los em seus bots.
-Pasta `Actions` com alguns Mods que não estão no original.
+Pasta `actions` com alguns Mods que não estão no original.
  
 #  
 ## :beginner: Tutorial para instalar estes Mods:
