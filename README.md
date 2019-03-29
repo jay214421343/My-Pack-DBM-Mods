@@ -3,6 +3,7 @@
 - :pushpin: **Este não é os Mods oficiais do DBM.** 
 - :pushpin: **Link GitHub oficial: https://goo.gl/MoLkmM**
 - :pushpin: **Site oficial: https://dbotmaker.io/**
+- :exclamation: **Todos os creditos para os criadores dos Mods.**
 
 Aqui estão alguns Mods para Discord Bot Maker! Sinta-se à vontade para usá-los em seus bots.
 Pasta `actions` com alguns Mods que não estão no original.
