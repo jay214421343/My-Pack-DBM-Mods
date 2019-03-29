@@ -6,7 +6,7 @@ module.exports = {
 // This is the name of the action displayed in the editor.
 //---------------------------------------------------------------------
 
-name: "Restart Bot",
+name: "Get Dominant Color",
 
 //---------------------------------------------------------------------
 // Action Section
@@ -14,7 +14,7 @@ name: "Restart Bot",
 // This is the section the action will fall into.
 //---------------------------------------------------------------------
 
-section: "Bot Client Control",
+section: "Image Editing",
 
 //---------------------------------------------------------------------
 // Action Subtitle
@@ -23,30 +23,9 @@ section: "Bot Client Control",
 //---------------------------------------------------------------------
 
 subtitle: function(data) {
-	return `Restarts bot`
+	const info = ['Image URL'];
+	return `Get dominant color from URL`;
 },
-
-//---------------------------------------------------------------------
-	 // DBM Mods Manager Variables (Optional but nice to have!)
-	 //
-	 // These are variables that DBM Mods Manager uses to show information
-	 // about the mods for people to see in the list.
-	 //---------------------------------------------------------------------
-
-	 // Who made the mod (If not set, defaults to "DBM Mods")
-	 author: "MrGold & NetLuis",
-
-	 // The version of the mod (Defaults to 1.0.0)
-	 version: "1.9.3", //Added in 1.9.3
-
-	 // A short description to show on the mod line for this mod (Must be on a single line)
-	 short_description: "Restarts the bot",
-
-	 // If it depends on any other mods by name, ex: WrexMODS if the mod uses something from WrexMods
-     
-
-	 //---------------------------------------------------------------------
-
 
 //---------------------------------------------------------------------
 // Action Storage Function
@@ -54,7 +33,11 @@ subtitle: function(data) {
 // Stores the relevant variable info for the editor.
 //---------------------------------------------------------------------
 
-//variableStorage: function(data, varType) {},
+variableStorage: function(data, varType) {
+	const type = parseInt(data.storage);
+	if(type !== varType) return;
+	return ([data.varName, 'String']);
+},
 
 //---------------------------------------------------------------------
 // Action Fields
@@ -64,7 +47,7 @@ subtitle: function(data) {
 // are also the names of the fields stored in the action's JSON data.
 //---------------------------------------------------------------------
 
-fields: [],
+fields: ["info", "find", "storage", "varName"],
 
 //---------------------------------------------------------------------
 // Command HTML
@@ -85,12 +68,28 @@ fields: [],
 html: function(isEvent, data) {
 	return `
 <div>
-	<p><u>Mod Info:</u><br>
-	Created by MrGold<br> Fixed by NetLuis</p>
-</div>
-<div><br>
-	<p><u>NOTE:</u><br>
-		Any action that is below this mod will not be executed!</p>
+	<div style="float: left; width: 40%;">
+		Source Field:<br>
+		<select id="info" class="round">
+			<option value="0" selected>Image URL</option>
+		</select>
+	</div>
+	<div style="float: right; width: 55%;">
+		Search Value:<br>
+		<input id="find" class="round" type="text">
+	</div>
+</div><br><br><br>
+<div style="padding-top: 8px;">
+	<div style="float: left; width: 35%;">
+		Store In:<br>
+		<select id="storage" class="round">
+			${data.variables[1]}
+		</select>
+	</div>
+	<div id="varNameContainer" style="float: right; width: 60%;">
+		Variable Name:<br>
+		<input id="varName" class="round" type="text">
+	</div>
 </div>`
 },
 
@@ -102,7 +101,8 @@ html: function(isEvent, data) {
 // functions for the DOM elements.
 //---------------------------------------------------------------------
 
-init: function() {},
+init: function() {
+},
 
 //---------------------------------------------------------------------
 // Action Bot Function
@@ -112,11 +112,31 @@ init: function() {},
 // so be sure to provide checks for variable existance.
 //---------------------------------------------------------------------
 
-action: function() {
-	this.getDBM().Bot.bot.destroy().then(console.log('Restarting bot...'))
-	const child = require('child_process')
-	child.execSync('node bot.js',{cwd: require('path').dirname(process.argv[1]),stdio:[0,1,2]}).catch(e => console.log('An error in Restart Bot MOD: ' + e))
-	//very long code lul
+action: async function(cache) {
+	const { getColorFromURL } = require('color-thief-node'), rgbToHex = require("rgb-hex");
+	const data = cache.actions[cache.index];
+	const bot = this.getDBM().Bot.bot;
+	const info = parseInt(data.info);
+	const url = this.evalMessage(data.find, cache);
+	let result;
+	switch(info) {
+		case 0:
+			try {
+				let RGB = await getColorFromURL(url);
+				result = `#${rgbToHex(RGB.join(", "))}`;
+			} catch (error) {
+				result = undefined;
+			}
+			break;
+		default:
+			break;
+	}
+	if (result !== undefined) {
+		const storage = parseInt(data.storage);
+		const varName = this.evalMessage(data.varName, cache);
+		this.storeValue(result, storage, varName, cache);
+	}
+	this.callNextAction(cache);
 },
 
 //---------------------------------------------------------------------
@@ -128,6 +148,7 @@ action: function() {
 // functions you wish to overwrite.
 //---------------------------------------------------------------------
 
-mod: function(DBM) {}
+mod: function(DBM) {
+}
 
 }; // End of module

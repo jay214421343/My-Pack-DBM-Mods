@@ -6,7 +6,7 @@ module.exports = {
 // This is the name of the action displayed in the editor.
 //---------------------------------------------------------------------
 
-name: "Restart Bot",
+name: "Color",
 
 //---------------------------------------------------------------------
 // Action Section
@@ -14,7 +14,7 @@ name: "Restart Bot",
 // This is the section the action will fall into.
 //---------------------------------------------------------------------
 
-section: "Bot Client Control",
+section: "Tools",
 
 //---------------------------------------------------------------------
 // Action Subtitle
@@ -23,7 +23,7 @@ section: "Bot Client Control",
 //---------------------------------------------------------------------
 
 subtitle: function(data) {
-	return `Restarts bot`
+	return `${data.color}`;
 },
 
 //---------------------------------------------------------------------
@@ -34,19 +34,18 @@ subtitle: function(data) {
 	 //---------------------------------------------------------------------
 
 	 // Who made the mod (If not set, defaults to "DBM Mods")
-	 author: "MrGold & NetLuis",
+	 author: "MrGold",
 
 	 // The version of the mod (Defaults to 1.0.0)
-	 version: "1.9.3", //Added in 1.9.3
+	 version: "1.9.4", //Added in 1.9.4
 
 	 // A short description to show on the mod line for this mod (Must be on a single line)
-	 short_description: "Restarts the bot",
+	 short_description: "Stores Selected Color (Hex Color)",
 
 	 // If it depends on any other mods by name, ex: WrexMODS if the mod uses something from WrexMods
      
 
 	 //---------------------------------------------------------------------
-
 
 //---------------------------------------------------------------------
 // Action Storage Function
@@ -54,7 +53,11 @@ subtitle: function(data) {
 // Stores the relevant variable info for the editor.
 //---------------------------------------------------------------------
 
-//variableStorage: function(data, varType) {},
+variableStorage: function(data, varType) {
+	const type = parseInt(data.storage);
+	if(type !== varType) return;
+	return ([data.varName, 'Color']);
+},
 
 //---------------------------------------------------------------------
 // Action Fields
@@ -64,7 +67,7 @@ subtitle: function(data) {
 // are also the names of the fields stored in the action's JSON data.
 //---------------------------------------------------------------------
 
-fields: [],
+fields: ["color", "storage", "varName"],
 
 //---------------------------------------------------------------------
 // Command HTML
@@ -85,12 +88,24 @@ fields: [],
 html: function(isEvent, data) {
 	return `
 <div>
-	<p><u>Mod Info:</u><br>
-	Created by MrGold<br> Fixed by NetLuis</p>
-</div>
-<div><br>
-	<p><u>NOTE:</u><br>
-		Any action that is below this mod will not be executed!</p>
+    <p>
+        <u>Tool Info:</u><br>
+	Created by MrGold
+    </p>
+</div><br>
+Color:<br>
+<input type="color" id="color"><br><br>
+<div>
+	<div style="float: left; width: 35%;">
+		Store In:<br>
+		<select id="storage" class="round">
+			${data.variables[1]}
+		</select>
+	</div>
+	<div id="varNameContainer" style="float: right; width: 60%;">
+		Variable Name:<br>
+		<input id="varName" class="round" type="text"><br>
+	</div>
 </div>`
 },
 
@@ -112,11 +127,17 @@ init: function() {},
 // so be sure to provide checks for variable existance.
 //---------------------------------------------------------------------
 
-action: function() {
-	this.getDBM().Bot.bot.destroy().then(console.log('Restarting bot...'))
-	const child = require('child_process')
-	child.execSync('node bot.js',{cwd: require('path').dirname(process.argv[1]),stdio:[0,1,2]}).catch(e => console.log('An error in Restart Bot MOD: ' + e))
-	//very long code lul
+action: function(cache) {
+	const data = cache.actions[cache.index];
+	
+	const color = this.evalMessage(data.color, cache);
+	
+    if(color !== undefined) {
+	const storage = parseInt(data.storage);
+	const varName = this.evalMessage(data.varName, cache);
+	this.storeValue(color, storage, varName, cache);
+	}
+	this.callNextAction(cache);
 },
 
 //---------------------------------------------------------------------
@@ -128,6 +149,7 @@ action: function() {
 // functions you wish to overwrite.
 //---------------------------------------------------------------------
 
-mod: function(DBM) {}
+mod: function(DBM) {
+}
 
 }; // End of module
